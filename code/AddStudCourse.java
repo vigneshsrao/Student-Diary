@@ -10,12 +10,12 @@ public class AddStudCourse extends CourseManip{
   }
 
   public void Add(){
-    //studDet.setRollno();
     if(getCourses()==false)
         return;
-    sc.getDetails();
-    studCourseList.add(sc);
-    StudentCourse.put(studCourseList,studDet.getRollno());
+    if(sc.getDetails()){
+      studCourseList.add(sc);
+      StudentCourse.put(studCourseList,studDet.getRollno());
+    }
   }
 
 }

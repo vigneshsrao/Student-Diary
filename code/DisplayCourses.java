@@ -46,7 +46,9 @@ public class DisplayCourses extends CourseManip{
       case 1: AddCourse obj1 = new AddCourse();
               obj1.Add();
               break;
-      case 2:
+      case 2: EditCourse obj2 = new EditCourse();
+              obj2.delete();
+              break;
       case 3:
       default: System.out.println("No Such Option !!!");
     }
@@ -79,8 +81,12 @@ public class DisplayCourses extends CourseManip{
       case 1: AddStudCourse obj = new AddStudCourse(studDet.getRollno());
               obj.Add();
               break;
-      case 2:
-      case 3:
+      case 2: EditStudent obj1 = new EditStudent(studDet.getRollno());
+              obj1.delete();
+              break;
+      case 3: EditStudent obj2 = new EditStudent(studDet.getRollno());
+              obj2.edit();
+              break;
       default: System.out.println("No Such Option !!!");
     }
   }

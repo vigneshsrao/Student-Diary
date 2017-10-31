@@ -11,8 +11,8 @@ public class StudentCourse extends StudentCoursefh implements Serializable{
 
   StudentCourse(){
     course = new Course();
-    grade='\0';
-    status='\0';
+    grade='-';
+    status='-';
     credits=0;
     totcredits=0;
   }
@@ -25,25 +25,68 @@ public class StudentCourse extends StudentCoursefh implements Serializable{
     totcredits=totcreds;
   }
 
-  public void getDetails(){
+  public boolean getDetails(){
     course.setCourseCode();
-    course.map();
+    if(!course.map()){
+      System.out.println("No such course. Add it first !");
+      return false;
+    }
     getTotcredits();
     getStatus();
     if(status!='T'){
       getCredits();
       getGrade();
     }
+    return true;
+  }
+
+  public void changeable(){
+    getStatus();
+    if(status!='T'){
+      getCredits();
+      getGrade();
+    }
+  }
+  public void setCourseCode(){
+    this.course.setCourseCode();
+  }
+
+  public Course retCourse(){
+    return course;
+  }
+
+  public char retGrade(){
+    return grade;
+  }
+
+  public char retStatus(){
+    return status;
+  }
+
+  public int retCredits(){
+    return credits;
+  }
+
+  public int retTotCredits(){
+    return totcredits;
   }
 
   public void getGrade(){
     Scanner s=new Scanner(System.in);
     while(true){
       System.out.print("Enter grade : ");
-      String str = s.next();
+      String str = s.nextLine();
       str=str.toUpperCase();
-      grade=str.charAt(0);
-      if(grade=='A'||grade=='B'||grade=='C'||grade=='D'||grade=='P'||grade=='F'||grade=='\n')
+      char tmp;
+      if(str.length()==0)
+        tmp='\n';
+      else
+        tmp=str.charAt(0);
+      if(tmp=='A'||tmp=='B'||tmp=='C'||tmp=='D'||tmp=='P'||tmp=='F'){
+        grade=tmp;
+        break;
+      }
+      else if(tmp=='\n')
         break;
       else
         System.out.println("Grade must be in range A-D or P or F !");
@@ -54,10 +97,18 @@ public class StudentCourse extends StudentCoursefh implements Serializable{
     Scanner s=new Scanner(System.in);
     while(true){
       System.out.print("Enter Status of course : Passed(P),Failed(F),Taking(T) :");
-      String str = s.next();
+      String str = s.nextLine();
       str=str.toUpperCase();
-      status=str.charAt(0);
-      if(status=='P'||status=='F'||status=='T')
+      char tmp;
+      if(str.length()==0)
+        tmp='\n';
+      else
+        tmp=str.charAt(0);
+      if(tmp=='P'||tmp=='F'||tmp=='T'){
+        status=tmp;
+        break;
+      }
+      else if(tmp=='\n')
         break;
       else
         System.out.println("Invalid Status !");
@@ -65,19 +116,21 @@ public class StudentCourse extends StudentCoursefh implements Serializable{
   }
 
   public void getTotcredits(){
-    Scanner s=new Scanner(System.in);
     System.out.print("Enter the Total Credits of this course : ");
-    totcredits=s.nextInt();
+    int tmp=Functions.getint();
+    if(tmp!=0)
+      totcredits=tmp;
   }
 
   public void getCredits(){
-    Scanner s=new Scanner(System.in);
     System.out.print("Enter the credits gained from this course : ");
-    credits=s.nextInt();
+    int tmp=Functions.getint();
+    if(tmp!=0)
+      credits=tmp;
   }
 
   public boolean equals(StudentCourse obj){
-    return this.course.equals(obj);
+    return this.course.equals(obj.retCourse());
   }
 
   public String toString(){

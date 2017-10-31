@@ -32,10 +32,4 @@ public class CourseManip{
       return false;
     }
   }
-
-  /*CourseManip(){
-    courseList=new ArrayList<Course>();
-    studCourseList= new ArrayList<StudentCourse>();
-  }
-  */
 }
