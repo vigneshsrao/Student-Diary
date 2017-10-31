@@ -29,7 +29,7 @@ public class CourseManip{
     }
     else{
       System.out.println("No Such Student ! Add this student first !");
-      return false
+      return false;
     }
   }
 
