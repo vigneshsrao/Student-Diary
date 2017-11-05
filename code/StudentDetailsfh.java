@@ -32,7 +32,7 @@ public class StudentDetailsfh{
       }
     }
     catch(IOException e){
-      System.out.print("  [*] An Error Occured While Reading File.");
+      System.out.print("  [*] An Error Occured While Writing to File.");
       System.out.println(" Please ensure that you enter Names first!");
     }
   }

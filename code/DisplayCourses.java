@@ -15,10 +15,12 @@ public class DisplayCourses extends CourseManip{
       System.out.println("2. Update Courses");
       System.out.println("3. View Current Student Courses");
       System.out.println("4. Update Students Courses");
-      System.out.println("5. Back");
+      System.out.println("5. Logout");
       System.out.print(">> ");
       opt=s.nextInt();
       System.out.println();
+      Functions.clrscr();
+      Functions.getStudent();
       return opt;
   }
 
@@ -36,7 +38,9 @@ public class DisplayCourses extends CourseManip{
                 break;
         case 4: updateStudCourse();
                 break;
-        case 5: return 1;
+        case 5: Functions.currentStudent=null;
+                Functions.clrscr();
+                return 1;
       }
     }
   }
@@ -50,6 +54,7 @@ public class DisplayCourses extends CourseManip{
               obj2.delete();
               break;
       case 3:
+      case 4: return;
       default: System.out.println("No Such Option !!!");
     }
   }
@@ -59,6 +64,7 @@ public class DisplayCourses extends CourseManip{
     System.out.println("1. Add Course");
     System.out.println("2. Delete Course");
     System.out.println("3. Edit Course");
+    System.out.println("4. Back");
     System.out.print(">> ");
     int opt=s.nextInt();
     System.out.println();
@@ -66,10 +72,10 @@ public class DisplayCourses extends CourseManip{
   }
 
   private int uscMenu(){
-    System.out.println();
     System.out.println("1. Add Course");
     System.out.println("2. Delete Course");
     System.out.println("3. Edit Course");
+    System.out.println("4. Back");
     System.out.print(">> ");
     int opt=s.nextInt();
     System.out.println();
@@ -87,6 +93,7 @@ public class DisplayCourses extends CourseManip{
       case 3: EditStudent obj2 = new EditStudent(studDet.getRollno());
               obj2.edit();
               break;
+      case 4: return;
       default: System.out.println("No Such Option !!!");
     }
   }

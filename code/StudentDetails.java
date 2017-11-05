@@ -31,26 +31,68 @@ public class StudentDetails extends StudentDetailsfh implements Serializable{
   public void setRollno(){
     Scanner s=new Scanner(System.in);
     System.out.print("Enter Roll no. : ");
-    rollno=s.next();
+    rollno=s.nextLine();
   }
 
   public String getRollno(){
     return rollno;
   }
 
+  public String getName(){
+    return name;
+  }
+
+  public int getSem(){
+    return sem;
+  }
+
   public void setDetails(){
     Scanner s=new Scanner(System.in);
-    System.out.print("Enter Roll no. : ");
-    rollno=s.next();
+    String tmproll="";
+    while(tmproll.length()==0){
+      System.out.print("Enter Roll no. : ");
+      tmproll=s.nextLine();
+      if(tmproll.length()==0 && rollno.length()!=0)
+          break;
+      if(tmproll.length()!=0)
+          rollno=tmproll;
+    }
+    String tmp="";
     System.out.print("Enter Name : ");
-    name=s.next();
+    tmp=s.nextLine();
+    if(tmp.length()!=0)
+        name=tmp;
+    int temp;
     System.out.print("Enter sem : ");
-    sem=s.nextInt();
+    temp=Functions.getint();
+    if(temp!=0)
+      sem=temp;
     System.out.println();
   }
 
+  public boolean map(){
+    ArrayList<StudentDetails> al=StudentDetails.get();
+    boolean flag=false;
+    for(StudentDetails obj:al){
+      if(this.equals(obj)==true){
+        this.name=obj.getName();
+        this.sem=obj.getSem();
+        flag=true;
+        break;
+      }
+    }
+    return flag;
+  }
+
+  public void print(){
+    String tmp="";
+    for(int i=0;i<42;i++)
+      tmp=tmp+'-';
+    System.out.println(String.format("Name: %-34s |\nRoll No.: %-30s |\nSemester: %-30d |\n%s\n\n",name,rollno,sem,tmp));
+  }
+
   public String toString(){
-    return rollno;
+    return "Name: "+name+'\n'+"Roll No.: "+rollno+"\nSemester : "+sem;
   }
 
 }

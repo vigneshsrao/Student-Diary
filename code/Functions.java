@@ -1,5 +1,8 @@
 import java.util.*;
 public class Functions{
+
+  static StudentDetails currentStudent;
+
   public static int getint(){
     Scanner s=new Scanner(System.in);
     String buf=s.nextLine();
@@ -18,4 +21,14 @@ public class Functions{
     }
     return num;
   }
+
+  public static void clrscr(){
+    System.out.print("\033[H\033[2J");
+    //Functions.getStudent();
+  }
+
+  public static void getStudent(){
+    Functions.currentStudent.print();
+  }
+
 }

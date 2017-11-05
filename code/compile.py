@@ -5,10 +5,11 @@ import os
 
 if len(sys.argv)>1:
     subprocess.Popen(['javac',sys.argv[1]])
+    time.sleep(1)
 else:
     os.system('javac *.java')
 
-time.sleep(0.2)
+#time.sleep(1)
 filenames = os.listdir(os.curdir)
 
 for i in filenames:
